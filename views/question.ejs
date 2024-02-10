@@ -1,0 +1,106 @@
+<!-- question.ejs -->
+<%- include('partials/header2') %>
+<div id="answerContainer" class="answer-box" style="display: none;">
+    <p id="answerText"></p>
+    <button id="copyButton" class="copy-btn" onclick="copyAnswer()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-sm">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 4C10.8954 4 10 4.89543 10 6H14C14 4.89543 13.1046 4 12 4ZM8.53513 4C9.22675 2.8044 10.5194 2 12 2C13.4806 2 14.7733 2.8044 15.4649 4H17C18.6569 4 20 5.34315 20 7V19C20 20.6569 18.6569 22 17 22H7C5.34315 22 4 20.6569 4 19V7C4 5.34315 5.34315 4 7 4H8.53513ZM8 6H7C6.44772 6 6 6.44772 6 7V19C6 19.5523 6.44772 20 7 20H17C17.5523 20 18 19.5523 18 19V7C18 6.44772 17.5523 6 17 6H16C16 7.10457 15.1046 8 14 8H10C8.89543 8 8 7.10457 8 6Z" fill="currentColor"></path>
+        </svg>
+    </button>                                                                                         
+</div>
+
+<div id="wrap">
+    <canvas id="canvas"></canvas>
+</div>
+
+<form action="javascript:" class="search-bar">
+    <input type="search" name="search" pattern=".*\S.*" required>
+    <button class="search-btn" type="submit">
+        <span>Search</span>
+    </button>
+</form>
+
+<div id="loader" class="loader" style="display: none;"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('.search-bar');
+        const answerContainer = document.getElementById('answerContainer');
+        const answerText = document.getElementById('answerText');
+        const loader = document.getElementById('loader');
+
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+            loader.style.display = 'block'; // Show loader
+
+            const questionInput = document.querySelector('.search-bar input').value;
+            if (questionInput.trim() !== '') {
+                try {
+                    const response = await fetch('/question', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ question: questionInput }),
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        answerContainer.style.display = 'block'; // Show the answer box
+                        loader.style.display = 'none'; // Hide loader
+                        await typeAnswer(data.answer);
+                    } else {
+                        console.error('Failed to get response from the server');
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        });
+
+        async function typeAnswer(answer) {
+            answerText.innerHTML = ''; // Clear previous content
+            const typingSpeed = 50; // Adjust typing speed (milliseconds)
+
+            const lines = answer.split('\n'); // Split the answer into lines
+
+            for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+                const line = lines[lineIndex];
+
+                for (let i = 0; i < line.length; i++) {
+                    // Wrap important keywords or headings in <strong> tags to make them bold
+                    if (line.charAt(i) === '*') {
+                        answerText.innerHTML += '<strong>';
+                        i++; // Skip the '*' character
+                        while (i < line.length && line.charAt(i) !== '*') {
+                            answerText.innerHTML += line.charAt(i);
+                            i++;
+                        }
+                        answerText.innerHTML += '</strong>';
+                    } else {
+                        answerText.innerHTML += line.charAt(i);
+                    }
+
+                    await new Promise(resolve => setTimeout(resolve, typingSpeed));
+                }
+                                                            
+                // Add a line break after each line, except for the last line
+                if (lineIndex < lines.length - 1) {
+                    answerText.innerHTML += '<br>';
+                    await new Promise(resolve => setTimeout(resolve, typingSpeed));
+                }
+            }
+        }
+
+        window.copyAnswer = function () {
+            const textArea = document.createElement("textarea");
+            textArea.value = answerText.innerText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+        };
+    });
+</script>
+
+<%- include('partials/footer2') %>

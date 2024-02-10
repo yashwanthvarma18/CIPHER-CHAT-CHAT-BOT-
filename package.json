@@ -1,0 +1,23 @@
+{
+  "name": "cipherchat-chatbot",
+  "version": "1.0.0",
+  "description": "ChatBot",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "colors": "^1.4.0",
+    "dotenv": "^16.4.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.3",
+    "openai": "^4.26.0",
+    "readline-sync": "^1.4.10"
+  }
+}

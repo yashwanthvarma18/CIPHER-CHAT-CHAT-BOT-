@@ -1,0 +1,404 @@
+body {
+    color: white;
+    font-family: "Nunito";
+    font-weight: lighter;
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #70ffc6 100%);
+    position: relative;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+body::before {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%);
+}
+
+body::after {
+    content: "";
+    width: 400%;
+    height: 400%;
+    opacity: 0.8;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #52d523);
+    animation: gradient_transition 15s ease infinite;
+}
+
+@keyframes gradient_transition {
+    0% { top: 0; left: 0; }
+    50% { top: -200%; left: -200%; }
+    100% { top: 0; left: 0; }
+}
+
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+}
+.loader {
+    border: none;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-top: 4px solid #d4d4d4;
+    animation: loaderAnimation 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+    z-index: 1;
+    display: none;
+}
+
+@keyframes loaderAnimation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+.answer-box,
+#answerContainer {
+    max-width: 660px;
+    padding: 19px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    border-radius: 16px;
+    backdrop-filter: blur(22px);
+    border: -2px solid rgb(9 2 2 / 50%);
+    background: rgba(255, 255, 255, 0.05);
+    margin-top: 50px; /* Adjust the margin-top value */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 80vh; /* Set a maximum height */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: transparent transparent; /* For Firefox */
+}
+
+/* Hide the scrollbar for WebKit browsers */
+.answer-box::-webkit-scrollbar,
+#answerContainer::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar width */
+}
+
+/* For Firefox */
+.answer-box:overflow {
+    scrollbar-width: none;
+}
+
+/* Optionally, you can style the track and thumb for Firefox */
+.answer-box::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.answer-box::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.answer-box p::after {
+    content: '';
+    display: inline-block;
+    vertical-align: bottom;
+    width: 0.6em; /* Adjust the width as needed */
+    animation: typing 1s steps(40), blink-caret 0.75s 1s infinite; /* Add a delay of 1s at the end */
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.search-bar {
+    font: 1em Playfair Display, serif;
+    text-align: center;
+    margin-top: auto; /* Adjusted to place it at the bottom */
+    margin-bottom: 20px;
+}
+
+:root {
+    font-size: calc(16px + (24 - 16)*(100vw - 320px)/(1920 - 320));
+}
+
+body, button, input {
+    font: 1em Playfair Display, serif;
+    line-height: 1.5em;
+}
+
+body, input {
+    color: #171717;
+}
+
+body, .search-bar {
+    display: flex;
+}
+
+body {
+    background: #f1f1f1;
+    height: 100vh;
+}
+
+.search-bar input,
+.search-btn, 
+.search-btn:before, 
+.search-btn:after {
+    transition: all 0.25s ease-out;
+}
+
+.search-bar input,
+.search-btn {
+    width: 3em;
+    height: 3em;
+}
+
+.search-bar input:invalid:not(:focus),
+.search-btn {
+    cursor: pointer;
+}
+
+.search-bar,
+.search-bar input:focus,
+.search-bar input:valid  {
+    width: 100%;
+}
+
+.search-bar input:focus,
+.search-bar input:not(:focus) + .search-btn:focus {
+    outline: transparent;
+}
+
+.search-bar {
+    padding: 1.5em;
+    justify-content: center;
+    max-width: 140em;
+}
+
+.search-bar input {
+    background: transparent;
+    border-radius: 1.5em;
+    box-shadow: 0 0 0 0.4em #171717 inset;
+    padding: 0.75em;
+    transform: translate(0.5em, 0.5em) scale(0.5);
+    transform-origin: 100% 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid white; /* Change the border color to white */
+}
+
+.search-bar input::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+.search-bar input:focus,
+.search-bar input:valid {
+    background: #fff;
+    border-radius: 0.375em 0 0 0.375em;
+    box-shadow: 0 0 0 0.1em #d9d9d9 inset;
+    transform: scale(1);
+    border: 2px solid white; /* Change the border color to white */
+}
+
+.search-btn {
+    background: #171717;
+    border-radius: 0 0.75em 0.75em 0 / 0 1.5em 1.5em 0;
+    padding: 0.75em;
+    position: relative;
+    transform: translate(0.25em,0.25em) rotate(45deg) scale(0.25,0.125);
+    transform-origin: 0 50%;
+}
+
+.search-btn:before, 
+.search-btn:after {
+    content: "";
+    display: block;
+    opacity: 0;
+    position: absolute;
+}
+
+.search-btn:before {
+    border-radius: 50%;
+    box-shadow: 0 0 0 0.2em #f1f1f1 inset;
+    top: 0.75em;
+    left: 0.75em;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.search-btn:after {
+    background: #f1f1f1;
+    border-radius: 0 0.25em 0.25em 0;
+    border: 2px solid white; /* Change the border color to white */
+    top: 51%;
+    left: 51%;
+    width: 0.75em;
+    height: 0.25em;
+    transform: translate(0.2em,0) rotate(45deg);
+    transform-origin: 0 50%;
+}
+
+.search-btn span {
+    display: inline-block;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+}
+
+/* Active state */
+.search-bar input:focus + .search-btn,
+.search-bar input:valid + .search-btn {
+    background: #008cff;
+    border-radius: 0 0.375em 0.375em 0;
+    transform: scale(1);
+}
+
+.search-bar input:focus + .search-btn:before, 
+.search-bar input:focus + .search-btn:after,
+.search-bar input:valid + .search-btn:before, 
+.search-bar input:valid + .search-btn:after {
+    opacity: 1;
+}
+
+.search-bar input:focus + .search-btn:hover,
+.search-bar input:valid + .search-btn:hover,
+.search-bar input:valid:not(:focus) + .search-btn:focus {
+    background: #0c48db;
+}
+
+.search-bar input:focus + .search-btn:active,
+.search-bar input:valid + .search-btn:active {
+    transform: translateY(1px);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body, input {
+        color: #f1f1f1;
+    }
+    body {
+        background: #171717;
+    }
+    .search-bar input {
+        box-shadow: 0 0 0 0.4em #f1f1f1 inset;
+    }
+    .search-bar input:focus,
+    .search-bar input:valid {
+        background: #3d3d3d;
+        box-shadow: 0 0 0 0.1em #3d3d3d inset;
+    }
+    .search-btn {
+        background: #f1f1f1;
+    }
+}
+
+#copyButton {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#copyButton svg path {
+    fill: black; /* Set the fill color to black */
+}
+
+#copyButton svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+}
+
+#wrap {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: none; /* Hide initially */
+}
+
+#wrap canvas {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    height: 500px;
+    margin: -250px 0 0 -250px;
+    -outline: 1px solid #fff;
+}
+
+.info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    color: #ccc;
+    line-height: 2em;
+    text-align: center;
+}
+
+@keyframes loaderAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* add some CSS styles for the footer */
+footer {
+    /* position the footer at the bottom of the page */
+    position: absolute;
+    bottom: 0;
+    /* set the width to 100% of the page */
+    width: 100%;
+    /* set the background color to a dark shade */
+
+    /* set the text color to white */
+    color: white;
+    /* center the text */
+    text-align: center;
+    /* add some padding */
+    padding: 10px;
+  }
+  
+  /* add some CSS styles for the developer name */
+  span {
+    /* set the font weight to bold */
+    font-weight: bold;
+    /* set the font color to a light shade */
+    color: #ffffff;
+  }
+  

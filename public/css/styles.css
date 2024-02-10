@@ -1,0 +1,100 @@
+/* Reset default margin and padding on the body and other elements */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Hide the scroll bars */
+}
+
+/* Set the background image for the entire page */
+html {
+  font-family: "Dosis";
+}
+
+/* Define the background for the cover class */
+.cover {
+  height: 100vh;
+  margin: 0; /* Ensure no default margin */
+  padding: 0; /* Ensure no default padding */
+  background-image: url("background.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Center the content vertically and horizontally */
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Style for the centered title */
+.main-title {
+  background-color: rgb(255 252 252 / 10%);
+  color: #000000;
+  padding: 100px;
+  border-radius: 25px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  border: 2px solid rgb(9 2 2 / 10%);
+}
+
+
+.main-title h1 {
+  font-family: "Lobster";
+  font-size: 3rem; /* Increased font size to 3rem */
+}
+
+/* Style for the hr element */
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(39, 40, 34, 0), rgba(39, 40, 34, 0.75), rgba(39, 40, 34, 0));
+}
+
+/* Style for the arrow icon */
+.arrow {
+  border: solid #272822;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+}
+p
+{
+  font-size: xx-large;
+}
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  padding: 8px; /* Increase padding to make it bigger */
+  border-width: 0 6px 6px 0; /* Increase border-width for a larger arrow */
+}
+
+
+footer {
+  /* position the footer at the bottom of the page */
+  position: absolute;
+  bottom: 0;
+  font-size: xx-large;
+  /* set the width to 100% of the page */
+  width: 100%;
+  /* set the background color to a dark shade */
+
+  /* set the text color to white */
+  color: white;
+  /* center the text */
+  text-align: center;
+  /* add some padding */
+  padding: 10px;
+}
+
+/* add some CSS styles for the developer name */
+span {
+  /* set the font weight to bold */
+  font-weight: bold;
+  /* set the font color to a light shade */
+  color: #ffffff;
+}

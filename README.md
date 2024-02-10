@@ -50,7 +50,5 @@ Follow these steps to run the application locally:
 
 ## Screenshots
 
-```bash
-# Placeholder commands for adding screenshots
 ![Home Page](Screenshot-1.png)
 ![Question Page](Screenshot-2.png)

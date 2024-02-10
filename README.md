@@ -7,7 +7,7 @@ Follow these steps to run the application locally:
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/your-username/your-repo.git
+    git clone [https://github.com/your-username/your-repo.git](https://github.com/yashwanthvarma18/CIPHER-CHAT-CHAT-BOT-.git)
     cd your-repo
     ```
 
